@@ -1,0 +1,9 @@
+function NotFoundPage() {
+    return (
+        <div style={{textAlign: 'center', marginTop: '100px'}}>
+            <h1 style={{fontSize: '120px'}}>404</h1>
+            <p>Page Not Found</p>
+        </div>
+    );
+}
+export default NotFoundPage;
