@@ -12,7 +12,7 @@ function CategoryPage() {
     const [categoryTitle, setCategoryTitle] = useState('');
 
     useEffect(() => {
-        axios.get(`http://localhost:3333/categories/${id}`)
+        axios.get(`https://pet-shop-backend-2l1c.onrender.com/categories/${id}`)
             .then(response => {
                 setCategoryTitle(response.data.category.title);
                 setProducts(response.data.data);
@@ -43,7 +43,7 @@ function CategoryPage() {
                     <div key={product.id} className={styles.productCard}>
                         <Link to={`/products/${product.id}`}>
                             <img
-                                src={`http://localhost:3333${product.image}`}
+                                src={`https://pet-shop-backend-2l1c.onrender.com${product.image}`}
                                 alt={product.title}
                             />
                         </Link>

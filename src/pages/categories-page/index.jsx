@@ -7,7 +7,7 @@ function CategoriesPage() {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:3333/categories/all')
+        axios.get('https://pet-shop-backend-2l1c.onrender.com/categories/all')
             .then(response => {
                 setCategories(response.data);
             })
@@ -34,7 +34,7 @@ function CategoriesPage() {
                         className={styles.categoryCard}
                     >
                         <img
-                            src={`http://localhost:3333${category.image}`}
+                            src={`https://pet-shop-backend-2l1c.onrender.com${category.image}`}
                             alt={category.title}
                         />
                         <h3>{category.title}</h3>
