@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import styles from './styles.module.css';
+import mainPageBanner from '../../assets/img/main-page-banner.png';
 
 function MainPage() {
     const [categories, setCategories] = useState([]);
@@ -19,8 +20,9 @@ function MainPage() {
     return (
         <div className={styles.mainPage}>
 
-            <div className={styles.banner}>
+            <div className={styles.banner} style={{backgroundImage: `url(${mainPageBanner})`}}>
                 <div className={styles.bannerContent}>
+
                     <h1>Amazing Discounts on Pets Products!</h1>
                     <Link to="/sale" className={styles.bannerButton}>
                         Check out

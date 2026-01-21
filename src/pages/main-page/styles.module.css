@@ -5,11 +5,22 @@
 
 
 .banner {
-    background: #846c74;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     border-radius: 12px;
     padding: 60px 40px;
     margin-bottom: 60px;
     color: white;
+    width: 100%;
+    max-width: 1440px;
+    height: 600px;
+    display: flex;
+    align-items: center;
+}
+
+.bannerContent {
+    max-width: 600px;
 }
 
 .bannerContent h1 {
