@@ -6,6 +6,7 @@ import mainPageBanner from '../../assets/img/main-page-banner.png';
 
 function MainPage() {
     const [categories, setCategories] = useState([]);
+    const [sales, setSales] = useState([]);
 
     useEffect(() => {
         axios.get('https://pet-shop-backend-2l1c.onrender.com/categories/all')
@@ -14,6 +15,17 @@ function MainPage() {
             })
             .catch(error => {
                 console.log('Ошибка загрузки категорий:', error);
+            });
+    }, []);
+
+    useEffect(() => {
+        axios.get('https://pet-shop-backend-2l1c.onrender.com/products/all')
+            .then(response => {
+                const discountedProducts = response.data.filter(p => p.discont_price);
+                setSales(discountedProducts);
+            })
+            .catch(error => {
+                console.log('Ошибка:', error);
             });
     }, []);
 
@@ -66,6 +78,46 @@ function MainPage() {
                     <button type="submit">Get a discount</button>
                 </form>
             </div>
+
+            <section className={styles.section}>
+                <div className={styles.sectionHeader}>
+                    <h2>Sale</h2>
+                    <Link to="/sale" className={styles.seeAll}>
+                        All sales
+                    </Link>
+                </div>
+
+                <div className={styles.categoriesGrid}>
+                    {sales.slice(0, 4).map(sale => (
+                        <Link
+                            to={`/products/${sale.id}`}
+                            key={sale.id}
+                            className={styles.categoryCard}
+                        >
+                            <img
+                                src={`https://pet-shop-backend-2l1c.onrender.com${sale.image}`}
+                                alt={sale.title}
+                            />
+
+                            {sale.discont_price && (
+                                <div className={styles.saleTag}>
+                                    -{Math.round((1 - sale.discont_price / sale.price) * 100)}%
+                                </div>
+                            )}
+
+                            <h3>{sale.title}</h3>
+
+                            <div className={styles.salePrices}>
+                                <span className={styles.newPrice}>${sale.discont_price}</span>
+                                <span className={styles.oldPrice}>${sale.price}</span>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
+            </section>
+
+
+
         </div>
     );
 }

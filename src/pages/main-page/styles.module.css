@@ -148,6 +148,42 @@
     transform: scale(1.05);
 }
 
+/* Товары со скидкой на главной */
+.saleTag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #0066ff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.categoryCard {
+    position: relative;
+}
+
+.salePrices {
+    display: flex;
+    gap: 10px;
+    padding: 0 15px 15px 15px;
+    align-items: center;
+}
+
+.newPrice {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.oldPrice {
+    font-size: 18px;
+    color: #999;
+    text-decoration: line-through;
+}
+
 
 /*@media (max-width: 768px) {*/
 /*    .categoriesGrid {*/

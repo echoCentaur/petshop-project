@@ -10,7 +10,7 @@ function SalePage() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:3333/products/all')
+        axios.get('https://pet-shop-backend-2l1c.onrender.com/products/all')
             .then(response => {
                 // Фильтруем только товары со скидкой
                 const discountedProducts = response.data.filter(p => p.discont_price);
@@ -40,7 +40,7 @@ function SalePage() {
                     <div key={product.id} className={styles.productCard}>
                         <Link to={`/products/${product.id}`}>
                             <img
-                                src={`http://localhost:3333${product.image}`}
+                                src={`https://pet-shop-backend-2l1c.onrender.com${product.image}`}
                                 alt={product.title}
                             />
                         </Link>

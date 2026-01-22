@@ -14,8 +14,9 @@ function ProductsPage() {
     const [sortBy, setSortBy] = useState('default');
     const [showDiscounted, setShowDiscounted] = useState(false);
 
+
     useEffect(() => {
-        axios.get('http://localhost:3333/products/all')
+        axios.get('https://pet-shop-backend-2l1c.onrender.com/products/all')
             .then(response => {
                 setProducts(response.data);
                 setFilteredProducts(response.data);
@@ -25,44 +26,21 @@ function ProductsPage() {
             });
     }, []);
 
+
     useEffect(() => {
-        let result = [...products];
-
-        // Фильтр по скидке
-        if (showDiscounted) {
-            result = result.filter(p => p.discont_price);
-        }
-
-        // Фильтр по цене
-        if (priceFrom) {
-            result = result.filter(p => {
-                const price = p.discont_price || p.price;
-                return price >= Number(priceFrom);
-            });
-        }
-        if (priceTo) {
-            result = result.filter(p => {
-                const price = p.discont_price || p.price;
-                return price <= Number(priceTo);
-            });
-        }
-
-        // Сортировка
-        if (sortBy === 'price-asc') {
-            result.sort((a, b) => {
+        const result = products
+            .filter(p => !showDiscounted || p.discont_price)
+            .filter(p => !priceFrom || (p.discont_price || p.price) >= Number(priceFrom))
+            .filter(p => !priceTo || (p.discont_price || p.price) <= Number(priceTo))
+            .sort((a, b) => {
                 const priceA = a.discont_price || a.price;
                 const priceB = b.discont_price || b.price;
-                return priceA - priceB;
+
+                return sortBy === 'price-asc' ? priceA - priceB
+                    : sortBy === 'price-desc' ? priceB - priceA
+                        : sortBy === 'title' ? a.title.localeCompare(b.title)
+                            : 0;
             });
-        } else if (sortBy === 'price-desc') {
-            result.sort((a, b) => {
-                const priceA = a.discont_price || a.price;
-                const priceB = b.discont_price || b.price;
-                return priceB - priceA;
-            });
-        } else if (sortBy === 'title') {
-            result.sort((a, b) => a.title.localeCompare(b.title));
-        }
 
         setFilteredProducts(result);
     }, [products, priceFrom, priceTo, sortBy, showDiscounted]);
@@ -75,13 +53,13 @@ function ProductsPage() {
         <div className={styles.productsPage}>
             <div className={styles.breadcrumbs}>
                 <Link to="/">Main page</Link>
-                <span> - </span>
+                <span> ... </span>
                 <span>All products</span>
             </div>
 
             <h1>All products</h1>
 
-            {/* Фильтры */}
+
             <div className={styles.filters}>
                 <div className={styles.priceFilter}>
                     <label>Price</label>
@@ -121,13 +99,12 @@ function ProductsPage() {
                 </div>
             </div>
 
-            {/* Товары */}
             <div className={styles.productsGrid}>
                 {filteredProducts.map(product => (
                     <div key={product.id} className={styles.productCard}>
                         <Link to={`/products/${product.id}`}>
                             <img
-                                src={`http://localhost:3333${product.image}`}
+                                src={`https://pet-shop-backend-2l1c.onrender.com${product.image}`}
                                 alt={product.title}
                             />
                         </Link>
@@ -145,9 +122,9 @@ function ProductsPage() {
 
                             <div className={styles.priceRow}>
                                 <div className={styles.prices}>
-                  <span className={styles.currentPrice}>
-                    ${product.discont_price || product.price}
-                  </span>
+                                    <span className={styles.currentPrice}>
+                                        ${product.discont_price || product.price}
+                                    </span>
                                     {product.discont_price && (
                                         <span className={styles.oldPrice}>${product.price}</span>
                                     )}
