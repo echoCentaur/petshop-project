@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './styles.module.css';
+import notFoundImg from '../../assets/img/02_404.png';
 
 function NotFoundPage() {
     return (
@@ -7,7 +8,7 @@ function NotFoundPage() {
             <div className={styles.content}>
                 <div className={styles.imageContainer}>
                     <img
-                        src='/src/assets/img/02_404.png'
+                        src={notFoundImg}
                         alt="404"
                         className={styles.image404}
                     />
