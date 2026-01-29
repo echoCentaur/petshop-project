@@ -103,37 +103,68 @@
 }
 
 
+
 .discountBanner {
-    background: linear-gradient(135deg, #0066ff 0%, #00c6ff 100%);
+    background: rgba(36, 81, 198, 1);
     border-radius: 12px;
     padding: 40px;
     color: white;
-    text-align: center;
     margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
 .discountBanner h2 {
     font-size: 36px;
-    margin-bottom: 30px;
+    margin: 0;
+    text-align: left;
+}
+
+.discountBannerContent {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.discountBanner img {
+    width: 45%;
+    max-width: 500px;
+    height: auto;
+    object-fit: contain;
 }
 
 .discountForm {
     display: flex;
+    flex-direction: column;
     gap: 15px;
-    justify-content: center;
-    flex-wrap: wrap;
+    width: 45%;
+    margin-left: auto;
 }
 
 .discountForm input {
-    padding: 12px 20px;
-    border: none;
+    padding: 15px 20px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 8px;
     font-size: 16px;
-    width: 200px;
+    width: 100%;
+    background-color: transparent;
+    color: white;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.discountForm input::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.discountForm input:focus {
+    outline: none;
+    border-color: white;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .discountForm button {
-    padding: 12px 30px;
+    padding: 15px 30px;
     background-color: white;
     color: #0066ff;
     border: none;
@@ -141,11 +172,73 @@
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    transition: transform 0.3s;
+    transition: transform 0.3s, background-color 0.3s;
 }
 
 .discountForm button:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
+    background-color: #f0f0f0;
+}
+
+.discountForm input {
+    padding: 15px 20px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    font-size: 16px;
+    width: 100%;
+    background-color: transparent;
+    color: white;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.discountForm input::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.discountForm input:focus {
+    outline: none;
+    border-color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.discountForm button {
+    padding: 15px 30px;
+    background-color: white;
+    color: #0066ff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.discountForm button:hover {
+    transform: scale(1.02);
+    background-color: #f0f0f0;
+}
+
+@media (max-width: 768px) {
+    .discountBanner {
+        flex-direction: column;
+        text-align: center;
+        position: relative;
+        padding-top: 80px;
+    }
+
+    .discountBanner h2 {
+        position: static;
+        margin-bottom: 20px;
+    }
+
+    .discountBanner img {
+        width: 80%;
+    }
+
+    .discountForm {
+        width: 100%;
+        margin-left: 0;
+    }
 }
 
 /* Товары со скидкой на главной */
@@ -185,22 +278,22 @@
 }
 
 
-/*@media (max-width: 768px) {*/
-/*    .categoriesGrid {*/
-/*        grid-template-columns: repeat(2, 1fr);*/
-/*    }*/
+@media (max-width: 768px) {
+    .categoriesGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
-/*    .bannerContent h1 {*/
-/*        font-size: 32px;*/
-/*    }*/
+    .bannerContent h1 {
+        font-size: 32px;
+    }
 
-/*    .discountForm {*/
-/*        flex-direction: column;*/
-/*        align-items: center;*/
-/*    }*/
+    .discountForm {
+        flex-direction: column;
+        align-items: center;
+    }
 
-/*    .discountForm input {*/
-/*        width: 100%;*/
-/*        max-width: 300px;*/
-/*    }*/
-/*}*/
+    .discountForm input {
+        width: 100%;
+        max-width: 300px;
+    }
+}

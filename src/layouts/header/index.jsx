@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styles from './styles.module.css';
+import logo from '../../assets/img/logo.svg';
 
 function Header() {
     const cartItems = useSelector(state => state.cart.items);
@@ -10,8 +11,7 @@ function Header() {
         <header className={styles.header}>
             <div className={styles.container}>
                 <Link to="/" className={styles.logo}>
-                    {/*<div className={styles.logoIcon}></div>*/}
-                    <span>Pet Shop</span>
+                    <img src={logo} alt="Pet Shop Logo" />
                 </Link>
 
                 <nav className={styles.nav}>

@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import styles from './styles.module.css';
 import mainPageBanner from '../../assets/img/main-page-banner.png';
+import animalsMain from '../../assets/img/animals-main.png';
+import logo from "../../assets/img/logo.svg";
 
 function MainPage() {
     const [categories, setCategories] = useState([]);
@@ -71,12 +73,15 @@ function MainPage() {
 
             <div className={styles.discountBanner}>
                 <h2>5% off on the first order</h2>
-                <form className={styles.discountForm}>
-                    <input type="text" placeholder="Name" />
-                    <input type="tel" placeholder="Phone number" />
-                    <input type="email" placeholder="Email" />
-                    <button type="submit">Get a discount</button>
-                </form>
+                <div className={styles.discountBannerContent}>
+                    <img src={animalsMain} alt="Animals Main" />
+                    <form className={styles.discountForm}>
+                        <input type="text" placeholder="Name" />
+                        <input type="tel" placeholder="Phone number" />
+                        <input type="email" placeholder="Email" />
+                        <button type="submit">Get a discount</button>
+                    </form>
+                </div>
             </div>
 
             <section className={styles.section}>
